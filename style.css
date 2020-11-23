@@ -71,7 +71,7 @@ h1 {
 }
 
 h2 {
-	font-size: var(--font-regular);
+	font-size: var(--font-medium);
 	font-weight: var(--weight-semi-bold);
 	color:var(--color-black);
 	margin: 8px 0;
@@ -431,3 +431,40 @@ p {
 .testimonial__speech-bubble a {
   color: var(--color-pink);
 }
+
+/* Contact */
+#contact {
+  background-color: var(--color-pink);
+}
+
+.contact_email,
+.contact_title,
+.contact_rights
+{
+  color: var(--color-white);
+}
+
+.contact_title {
+  margin: 32px 0 ;
+}
+
+
+.contact_links {
+  font-size: var(--font-medium);
+  margin: 24px 0;
+}
+
+.contact_links i:hover {
+  transform: scale(1.1);
+  color: var(--color-black);
+  transition: all var(--annimation-duration) ease-in;
+}
+
+/* .contact_links i:nth-of-type(2):hover{
+  transform: scale(1.1);
+  color: var(--color-blue);
+  transition: all var(--annimation-duration) ease-in;
+  
+} */
+/* 이모티콘마다 색깔 다루게 구현해보기! */
+
