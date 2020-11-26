@@ -20,7 +20,6 @@ document.addEventListener("scroll", () => {
 // Handle scrolling when tapping on the navbar menu
 // 1) navbarmenu의 섹션을 클릭한다.
 // 2) 해당 섹션으로 스크롤과 뷰가 이동한다.
-
 const navbarMenu = document.querySelector(".navbar__menu");
 navbarMenu.addEventListener("click", (event) => {
   // console.log(event.target);
@@ -30,11 +29,25 @@ navbarMenu.addEventListener("click", (event) => {
   if (link == null) {
     return;
   }
-  console.log(event.target.dataset.link);
-  const scrollTo = document.querySelector(link);
-  scrollTo.scrollIntoView({
-    behavior: "smooth",
-    // block: "end",
-    // inline: "nearest",
-  });
+
+  // console.log(event.target.dataset.link);
+  scrollIntoView(link);
+  // const scrollTo = document.querySelector(link);
+  // scrollTo.scrollIntoView({
+  //   behavior: "smooth",
+  //   // block: "end",
+  //   // inline: "nearest",
+  // });
 });
+
+// Handle click on 'contact me' button on home
+
+const homeContactBtn = document.querySelector(".home__contact");
+homeContactBtn.addEventListener("click", () => {
+  scrollIntoView("#contact");
+});
+
+function scrollIntoView(selector) {
+  const scrollTo = document.querySelector(selector);
+  scrollTo.scrollIntoView({ behavior: "smooth" });
+}
