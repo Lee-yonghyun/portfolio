@@ -95,10 +95,20 @@ p {
 #navbar {
 	display: flex;
 	justify-content:space-between;
-	background-color: var(--color-pink);
+	background-color: transparent;
 	align-items: center;
 	color: var(--color-white);
-	padding: 16px;
+  padding: 16px;
+  
+  position: fixed;
+  width: 100%;
+  transition: all var(--annimation-duration) ease-in;
+  z-index: 1;
+}
+
+#navbar.navbar--dark {
+  background-color: var(--color-pink);
+  padding: 5px;
 }
 
 .navbar__menu {
@@ -107,7 +117,8 @@ p {
 
 .navbar__logo {
 	font-size:var(--font-medium);
-	font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semi-bold);
+  color: white;
 }
 
 .navbar__menu__item{
@@ -135,10 +146,11 @@ p {
   color: var(--color-white);
   display: none;/* 아예 보여지지 않도록! */
 }
-
+/* Home */
 #home {
 	background: url('imgs/homebackground.png') center/cover no-repeat;
-	padding: 40px;
+  padding: 40px;
+  padding: 120px;
 	text-align: center;
 }
 
@@ -494,7 +506,7 @@ p {
     flex-direction: column;
     text-align: center;
     width: 100%;/* ??? 이거 안됨. */
-    display: none;
+    /* display: none; */
   }
 
   .about__majors {
