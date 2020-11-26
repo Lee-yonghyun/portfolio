@@ -127,6 +127,15 @@ p {
 	color: #000000;
 }
 
+.navbar__toggle-btn {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 24px;
+  color: var(--color-white);
+  display: none;/* 아예 보여지지 않도록! */
+}
+
 #home {
 	background: url('imgs/homebackground.png') center/cover no-repeat;
 	padding: 40px;
@@ -468,3 +477,47 @@ p {
 } */
 /* 이모티콘마다 색깔 다루게 구현해보기! */
 
+
+/* responsive */
+/* For below 768px screen width */
+/* 미디어 쿼리 안에는 최소한의 것만 들어가야 한다. 차이점만!! */
+@media screen and (max-width:768px) {
+  .navbar__toggle-btn {
+    display: block;
+  }
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar__menu {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;/* ??? 이거 안됨. */
+    display: none;
+  }
+
+  .about__majors {
+    flex-direction: column;
+  }
+
+  .major {
+    margin-bottom: 38px;
+  }
+
+  .skillset {
+    flex-direction: column;
+  }
+
+  .project {
+    flex-grow: 1;
+  }
+
+  .testimonial__avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+
+
+}
