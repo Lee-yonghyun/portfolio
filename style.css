@@ -497,6 +497,27 @@ p {
 } */
 /* 이모티콘마다 색깔 다루게 구현해보기! */
 
+.arrowupBnt {
+  position: fixed;
+  bottom: 12px;
+  right: 8px;
+  color: var(--color-dark-pink);
+  font-size: 40px;
+  /* display: none; 애니메이션 줄수가 없다. */
+  opacity: 0;
+  pointer-events: none;
+  transition: all 300ms ease-in;
+
+}
+
+
+.arrowupBnt.visible {
+  /* display: block; */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
 
 /* responsive */
 /* For below 768px screen width */
