@@ -51,3 +51,14 @@ function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: "smooth" });
 }
+
+// Make home slowly fade to transparent as the window scrolls down
+// 1) 현재 스크롤이, 점점 내려갈수록
+// 2) background를 뺀 나머지로 점점 투명해 지도록(중간쯤에서 투명도0.5)
+
+const home = document.querySelector(".home__container");
+const homeHeight = home.getBoundingClientRect().height;
+
+document.addEventListener("scroll", () => {
+  home.style.opacity = 1 - window.scrollY / homeHeight;
+});

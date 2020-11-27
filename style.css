@@ -56,7 +56,7 @@ ul{
 }
 
 button {
-	background-color: transparent;
+  background-color: transparent;
 	cursor: pointer;
 	border:none;
 	outline: none;
@@ -151,7 +151,15 @@ p {
 	background: url('imgs/homebackground.png') center/cover no-repeat;
   padding: 40px;
   padding: 120px;
-	text-align: center;
+  text-align: center;
+}
+
+#home.home__opacity1 {
+  opacity: 0.5;
+}
+
+#home.home__opacity2 {
+  opacity:1
 }
 
 .home__avatar {
