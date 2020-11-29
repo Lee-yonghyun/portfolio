@@ -68,13 +68,59 @@ const arrowBnt = document.querySelector(".arrowupBnt");
 document.addEventListener("scroll", () => {
   if (window.scrollY > homeHeight / 2) {
     arrowBnt.classList.add("visible");
-
-    arrowBnt.addEventListener("click", () => {
-      scrollIntoView("#home");
-    });
   } else {
     arrowBnt.classList.remove("visible");
   }
+});
+
+arrowBnt.addEventListener("click", () => {
+  scrollIntoView("#home");
+});
+
+// project filtering & annimation
+// 1) 기본적으로 보여지고, 눌렀을때 해당되는 것 외에 것은 제거
+// 1) dataset을 이용한다. & classlist를 이용
+const workBtnContainer = document.querySelector(".work__categories");
+const projectContainer = document.querySelector(".work__projects");
+const projects = document.querySelectorAll(".project");
+
+workBtnContainer.addEventListener("click", (e) => {
+  const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+  // console.log(projects[0]);
+  // console.log(projects[0].dataset.type);
+
+  if (filter == null) {
+    return;
+  }
+
+  // projectContainer.classList.add("anim-out");
+
+  // projects.forEach((project) => {
+  //   // console.log(project.dataset.type);
+  //   if (filter === "*" || filter === project.dataset.type) {
+  //     project.classList.remove("invisible");
+  //   } else {
+  //     project.classList.add("invisible");
+  //   }
+  // });
+
+  // setTimeout(() => {
+  //   projectContainer.classList.remove("anim-out");
+  // }, 300);
+
+  projectContainer.classList.add("anim-out");
+
+  setTimeout(() => {
+    projects.forEach((project) => {
+      console.log(project.dataset.type);
+      if (filter === "*" || filter === project.dataset.type) {
+        project.classList.remove("invisible");
+      } else {
+        project.classList.add("invisible");
+      }
+    });
+    projectContainer.classList.remove("anim-out");
+  }, 300);
 });
 
 function scrollIntoView(selector) {

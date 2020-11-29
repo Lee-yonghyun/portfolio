@@ -356,9 +356,17 @@ p {
   display: flex;
   flex-wrap: wrap; /* 한자리에 차지않으면 맵핑되도록 */
   justify-content: center;
+  opacity: 1;
+  transition: all var(--annimation-duration) ease-out;
 }
 
-.project {
+.work__projects.anim-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(40px);
+}
+
+
+.project{
   position: relative; /* absolute를 쓰기위한 변형! 가장 근접한 부모로 감! */
   display: flex;
   justify-content: center;
@@ -369,6 +377,12 @@ p {
   margin: 2px;
   background-color: var(--color-light-white);
 }
+
+
+.project.invisible {
+  display: none;
+}
+
 
 .project__img {
   max-width: 100%; 
