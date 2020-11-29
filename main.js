@@ -2,13 +2,10 @@
 
 // Make navbar transparent when it is on the top
 const navbar = document.querySelector("#navbar");
-/* navbar 선택자(element) */
 const navbarHeight = navbar.getBoundingClientRect().height;
-/* navbar의 height*/
 
 document.addEventListener("scroll", () => {
   console.log(Math.round(window.scrollY)); /* 현재 스크롤 위치 */
-  // console.log(`navbarHeight: ${navbarHeight}`);
 
   if (window.scrollY > navbarHeight) {
     navbar.classList.add("navbar--dark");
@@ -17,18 +14,23 @@ document.addEventListener("scroll", () => {
   }
 });
 
+// Navbar toggle button for small screen
+const navbarToggleBtn = document.querySelector(".navbar__toggle-btn");
+navbarToggleBtn.addEventListener("click", () => {
+  navbarMenu.classList.toggle("open");
+});
+
 // Handle scrolling when tapping on the navbar menu
 // 1) navbarmenu의 섹션을 클릭한다.
 // 2) 해당 섹션으로 스크롤과 뷰가 이동한다.
 const navbarMenu = document.querySelector(".navbar__menu");
 navbarMenu.addEventListener("click", (event) => {
-  // console.log(event.target);
-
   const target = event.target;
   const link = target.dataset.link;
   if (link == null) {
     return;
   }
+  navbarMenu.classList.remove("open");
 
   // console.log(event.target.dataset.link);
   scrollIntoView(link);
@@ -111,7 +113,6 @@ workBtnContainer.addEventListener("click", (e) => {
   // Remove selection from the previous item and select the new one
   const active = document.querySelector(".category__btn.selected");
   active.classList.remove("selected");
-
   const target =
     e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
   target.classList.add("selected");
