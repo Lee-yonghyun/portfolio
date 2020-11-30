@@ -160,7 +160,7 @@ p {
 }
 
 .home__avatar {
-	width: 200px;
+	width: 250px;
 	height: 250px;
 	border-radius: 50%;
 	border: 2px solid var(--color-light-white)
@@ -183,7 +183,7 @@ p {
 
 .home__contact:hover {
 	color:var(--color-black);
-	background-color: var(--color-dark-pink);
+	background-color: var(--color-orange);
 }
 
 /* Section common */
@@ -321,6 +321,7 @@ p {
   border-radius: var(--size-border-radius);
   font-size: var(--font-regular);
   padding: 8px 48px;
+  position: relative;
 }
 
 .category__btn.selected,
@@ -342,9 +343,10 @@ p {
   height: 20px;
   line-height: 20px;
   display: inline-block;/* span요소이기 때문에  */
-  position: relative;
+  
+  position: absolute;
   top:-20px;
-  left:4px;
+  right: 16px;
   opacity: 0;
   transition: all var(--annimation-duration) ease-in;
 }
@@ -535,13 +537,36 @@ p {
 /* For below 768px screen width */
 /* 미디어 쿼리 안에는 최소한의 것만 들어가야 한다. 차이점만!! */
 @media screen and (max-width:768px) {
+
+  :root {
+    /* 변수 재설정 */
+    	/* Font size */
+	--font-large: 30px;
+	--font-medium: 20px;
+	--font-regular: 16px;
+	--font-small: 14px;
+	--font-micro: 12px;
+  }
+
+
   .navbar__toggle-btn {
     display: block;
+    top: 16px;
+    right: 16px;
+    font-size: var(--font-medium);
   }
   #navbar {
     flex-direction: column;
     align-items: flex-start;
     background-color: var(--color-pink);
+  }
+
+  #home {
+    padding: 70px 16px;
+  }
+  .section {
+    padding: 16px;
+    padding-top:40px ;/* navbar 스크롤 이동시 공간 */
   }
 
   .navbar__menu {
@@ -557,24 +582,55 @@ p {
 
   .about__majors {
     flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 0px;
   }
 
   .major {
-    margin-bottom: 38px;
+    margin-bottom: 30px;
   }
 
   .skillset {
     flex-direction: column;
   }
 
+  .category__btn {
+    /* padding: 8px; */
+    margin: 4px 0 ;
+    width: 100%;
+  }
+
   .project {
     flex-grow: 1;
   }
 
-  .testimonial__avatar {
-    width: 80px;
-    height: 80px;
+  .testimonial{
+    flex-direction: column;
+    align-items: center;
   }
+
+  .testimonial__avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .testimonial__avatar:nth-child(even),
+  .testimonial__avatar:nth-child(odd)
+  {
+    margin: 0;
+    margin-bottom: 20px; /* nth-child가 더 세부요소!  */
+  }
+  .testimonial__speech-bubble {
+    order: 1;/* flex box안의 item일때 순서 정렬하는 요소  */
+  }
+
+  .arrowupBnt{
+    /* font-size: 30px; */
+    right: 14px;
+    bottom: 14px;
+  }
+
+
 
 
 
