@@ -34,7 +34,7 @@ navbarMenu.addEventListener("click", (event) => {
 
   // console.log(event.target.dataset.link);
   scrollIntoView(link);
-  // selectNavItem(target);
+  selectNavItem(target);
 
   // const scrollTo = document.querySelector(link);
   // scrollTo.scrollIntoView({
@@ -191,7 +191,7 @@ const observerCallback = (entries, observer) => {
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach((section) => observer.observe(section));
 
-window.addEventListener("scroll", () => {
+window.addEventListener("wheel", () => {
   // 맨위 스크롤 home
   if (window.scrollY === 0) {
     selectedNavIndex = 0;
@@ -206,4 +206,6 @@ window.addEventListener("scroll", () => {
   selectNavItem(navItems[selectedNavIndex]);
 });
 
-// 수등으로 메뉴선택이 에러발생 가능. 전체화면에서 testimonial 선택시
+// 수동으로 메뉴선택이 에러발생 가능. 전체화면에서 testimonial 선택시
+// 사용자가 마우스나 트랙패드를 이용해서 이벤트하는 경우, wheel
+// 기존, scroll은 scrollIntoView에 의해 움직이는 스크롤링까지 포함.
