@@ -5,7 +5,7 @@ const navbar = document.querySelector("#navbar");
 const navbarHeight = navbar.getBoundingClientRect().height;
 
 document.addEventListener("scroll", () => {
-  console.log(Math.round(window.scrollY)); /* 현재 스크롤 위치 */
+  // console.log(Math.round(window.scrollY)); /* 현재 스크롤 위치 */
 
   if (window.scrollY > navbarHeight) {
     navbar.classList.add("navbar--dark");
@@ -34,6 +34,8 @@ navbarMenu.addEventListener("click", (event) => {
 
   // console.log(event.target.dataset.link);
   scrollIntoView(link);
+  // selectNavItem(target);
+
   // const scrollTo = document.querySelector(link);
   // scrollTo.scrollIntoView({
   //   behavior: "smooth",
@@ -138,6 +140,7 @@ function scrollIntoView(selector) {
   scrollTo.scrollIntoView({ behavior: "smooth" });
 }
 
+// Scroll 활성화하기
 // 1. 모든 섹션 요소들과 메뉴item 가지고 온다. (section별 id이용)
 // 2. IntersectionObserver를 이용해서 모든 섹션들을 관찰한다.
 // 3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다.
@@ -155,20 +158,52 @@ const sections = sectionIds.map((id) => document.querySelector(id));
 const navItems = sectionIds.map((id) =>
   document.querySelector(`[data-link="${id}"]`)
 );
-// console.log(sections);
-// console.log(navItems);
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+
+function selectNavItem(selected) {
+  selectedNavItem.classList.remove("active");
+  selectedNavItem = selected;
+  selectedNavItem.classList.add("active");
+}
 
 const observerOptions = {
   root: null,
   rootMargin: "0px",
   threshold: 0.3,
 };
-
 const observerCallback = (entries, observer) => {
   entries.forEach((entry) => {
-    console.log(entry.target);
+    // when 스크롤링(관찰대상이 루트 요소를 빠져나가면, 다음메뉴 선택)
+    if (!entry.isIntersecting && entry.intersectionRatio > 0) {
+      const index = sectionIds.indexOf(`#${entry.target.id}`);
+      // console.log(entry.target.id, entry.boundingClientRect);
+      if (entry.boundingClientRect.y < 0) {
+        selectedNavIndex = index + 1;
+      } else {
+        selectedNavIndex = index - 1;
+      }
+    }
   });
 };
 
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach((section) => observer.observe(section));
+
+window.addEventListener("scroll", () => {
+  // 맨위 스크롤 home
+  if (window.scrollY === 0) {
+    selectedNavIndex = 0;
+  } else if (
+    // 맨아래 스크롤일때 contact
+    Math.round(window.scrollY + window.innerHeight) >=
+    document.body.clientHeight
+  ) {
+    selectedNavIndex = navItems.length - 1;
+  }
+  // nav메뉴 활성화
+  selectNavItem(navItems[selectedNavIndex]);
+});
+
+// 수등으로 메뉴선택이 에러발생 가능. 전체화면에서 testimonial 선택시
