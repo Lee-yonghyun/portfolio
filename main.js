@@ -34,7 +34,6 @@ navbarMenu.addEventListener("click", (event) => {
 
   // console.log(event.target.dataset.link);
   scrollIntoView(link);
-  selectNavItem(target);
 
   // const scrollTo = document.querySelector(link);
   // scrollTo.scrollIntoView({
@@ -45,7 +44,6 @@ navbarMenu.addEventListener("click", (event) => {
 });
 
 // Handle click on 'contact me' button on home
-
 const homeContactBtn = document.querySelector(".home__contact");
 homeContactBtn.addEventListener("click", () => {
   scrollIntoView("#contact");
@@ -135,11 +133,6 @@ workBtnContainer.addEventListener("click", (e) => {
   }, 300);
 });
 
-function scrollIntoView(selector) {
-  const scrollTo = document.querySelector(selector);
-  scrollTo.scrollIntoView({ behavior: "smooth" });
-}
-
 // Scroll 활성화하기
 // 1. 모든 섹션 요소들과 메뉴item 가지고 온다. (section별 id이용)
 // 2. IntersectionObserver를 이용해서 모든 섹션들을 관찰한다.
@@ -166,6 +159,12 @@ function selectNavItem(selected) {
   selectedNavItem.classList.remove("active");
   selectedNavItem = selected;
   selectedNavItem.classList.add("active");
+}
+
+function scrollIntoView(selector) {
+  const scrollTo = document.querySelector(selector);
+  scrollTo.scrollIntoView({ behavior: "smooth" });
+  selectNavItem(navItems[sectionIds.indexOf(selector)]);
 }
 
 const observerOptions = {
@@ -206,6 +205,6 @@ window.addEventListener("wheel", () => {
   selectNavItem(navItems[selectedNavIndex]);
 });
 
-// 수동으로 메뉴선택이 에러발생 가능. 전체화면에서 testimonial 선택시
-// 사용자가 마우스나 트랙패드를 이용해서 이벤트하는 경우, wheel
+// 수동으로 메뉴선택이 에러발생. 전체화면에서 testimonial 선택시. scroll이 중복 발생.
+// 사용자가 마우스나 트랙패드를 이용해서 스크롤 이벤트하는 경우, wheel
 // 기존, scroll은 scrollIntoView에 의해 움직이는 스크롤링까지 포함.
